@@ -1,0 +1,11 @@
+<ion-view view-title="Dashboard">
+  <ion-content class="padding">
+    <div class="list card" ng-repeat="n in passenger">
+      <div class="item item-divider">
+       Name: {{n.PassengerName}}<br>
+       Location: {{n.Location}}<br>
+       Start Time: {{n.StartTime | date:"MM/dd/yyyy 'at' h:mma"}}<br>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
