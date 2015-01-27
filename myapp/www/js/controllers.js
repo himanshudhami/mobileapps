@@ -50,4 +50,37 @@ function initialize() {
 })
 
 .controller('AccountCtrl', function($scope) {
+})
+
+
+.controller('LoginCtrl', function($scope, $firebaseSimpleLogin, $location) {
+  $scope.loginData = {};
+
+  var dataRef = new Firebase("https://ionic-firebase-login.firebaseio.com/");
+  $scope.loginObj = $firebaseSimpleLogin(dataRef);
+  
+  $scope.login = function() {
+    if($scope.loginData.email=='test@gmail.com' && $scope.loginData.password=='Test123')
+    {
+      $location.url('/tab/dash');
+    }
+    else
+    {
+      console.log('Unable to login');
+    }
+  };
+
+  $scope.tryLogin = function() {
+    $scope.loginObj.$login('facebook').then(function(user) {
+      // The root scope event will trigger and navigate
+      console.log(user);
+      $location.url('/tab/dash');
+    }, function(error) {
+      // Show a form error here
+      console.error('Unable to login', error);
+    });
+  };
+})
+
+.controller('SignupCtrl', function($scope) {
 });
